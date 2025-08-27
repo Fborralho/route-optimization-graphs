@@ -1,0 +1,30 @@
+# Build files
+*.o
+*.out
+*.exe
+*.a
+*.so
+*.dll
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake-build-*/
+build/
+Makefile
+compile_commands.json
+
+# CLion
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs and temp
+*.log
+*.tmp
+*.swp
+*.txt
+*.vscode
