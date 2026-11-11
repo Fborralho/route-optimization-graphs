@@ -1,35 +1,48 @@
-# Route Optimization Tool
+# Route Optimization — Graph Algorithms in C++
 
-This project implements a **route planning system** using graph algorithms, designed to optimize travel across an urban network. The tool supports multimodal paths (driving + walking), environmentally friendly routing, and dynamic exclusion of roads.
+Academic C++ project for finding routes through a road network, including driving restrictions and combined driving/walking journeys.
 
 ## Features
-- Import locations and road networks from `.csv` or `.txt` files.
-- Graph representation with nodes (locations) and edges (roads).
-- **Dijkstra’s Algorithm** for shortest paths.
-- Environmentally friendly routes: combination of walking and driving.
-- Support for blocked roads and dynamic exclusion without rebuilding the graph.
-- Multimodal routes using parking nodes (drive + walk).
-- Alternative path suggestions.
 
-##  Tech Stack
-- Language: **C++**
-- Data Structures: Graphs, Priority Queues
-- Algorithms: Dijkstra, Pathfinding, Multimodal Routing
+- Represents locations and bidirectional roads as a graph with driving and walking costs.
+- Uses **Dijkstra's shortest-path algorithm** for route planning.
+- Supports excluded nodes and road segments in restricted-route queries.
+- Computes **drive-and-walk** routes through eligible parking locations subject to a maximum walking time, with alternative suggestions when constraints cannot be met.
+- Reads network data and route constraints from text files and writes route results to `output.txt`.
 
-## Input & Output
-- Reads input constraints from `input.txt`  
-- Writes optimal path(s) to `output.txt`
+## Implementation
 
-## Complexity
-- Dijkstra: `O((N + M) log N)`  
-- Environmentally friendly routing: `O(N * (N + M) log N)`
+| File | Responsibility |
+| --- | --- |
+| [Graph.h](Graph.h) / [Graph.cpp](Graph.cpp) | Graph data structures, Dijkstra and combined driving/walking routing |
+| [FileManager.h](FileManager.h) / [FileManager.cpp](FileManager.cpp) | Import road-network data, parse route requests and export results |
+| [Menu.cpp](Menu.cpp) | Command-line menu and application entry point |
+| [CMakeLists.txt](CMakeLists.txt) | C++17 build definition |
 
-##  User Interface
-- Simple menu-driven interaction via text file input/output:
-  - Normal planning
-  - Planning with restrictions
-  - Driving + walking planning
+**Core concepts:** weighted graphs, adjacency lists, shortest paths, priority queues, constrained routing, algorithmic complexity.
+
+The source documents typical Dijkstra complexity as `O((V + E) log V)` and the combined routing approach as `O(V (V + E) log V)`.
+
+## Build
+
+Requirements: **C++17 compiler** and **CMake 3.30 or newer**.
+
+```bash
+cmake -S . -B build
+cmake --build build
+```
+
+The configured executable is named `MainProject`. The program currently loads `LocSample.txt` and `DisSample.txt` from its working directory and reads `input.txt` to process requests.
+
+**These input files are not included in this public snapshot**, so building the code is not sufficient to run a route example out of the box.
+
+## Limitations
+
+- Local road-network datasets and route input examples are not included in this repository.
+- There is no published automated test suite in this snapshot.
+- Build and runtime execution have not been independently verified as part of this README update.
 
 ## Authors
-- Francisco Rafael dos Santos Borralho  
+
+- Francisco Rafael dos Santos Borralho
 - Gonçalo Tavares de Pinho Mendes Calvo
